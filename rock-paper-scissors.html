@@ -1,0 +1,107 @@
+<head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 2rem;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #computer {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        #scoreboard {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #scoreboard p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let choices = ["✊", "🤚", "✌"]
+
+        let wins = 0, losses = 0, ties = 0;
+
+
+        function battle(index) {
+            let computerChoice = Math.floor(Math.random() * 3);
+            let humanChoice = index;
+            let computerDiv = document.getElementById("computer")
+            let computerElem = document.createElement("div")
+            computer.textContent = "Computer choice: " + choices[computerChoice];
+            computerDiv.appendChild(computerElem)
+            if (computerChoice === 0 && humanChoice === 1) {
+                wins+=1;
+            } else if (computerChoice === 1 && humanChoice === 2) {
+                wins+=1;
+            } else if (computerChoice === 2 && humanChoice === 0) {
+                wins+=1;
+            } else if (humanChoice === 0 && computerChoice === 1) {
+                losses+=1;
+            } else if (humanChoice === 1 && computerChoice === 2) {
+                losses+=1;
+            } else if (humanChoice === 2 && computerChoice === 0) {
+                losses+=1;
+            } else {
+                ties+=1;
+            }
+
+            document.getElementById("wins").textContent = "Wins: " + wins;
+            document.getElementById("losses").textContent = "Losses: " + losses;
+            document.getElementById("ties").textContent = "Ties: " + ties;
+        }
+
+    </script>
+
+    <div id="container">
+        <button onclick="battle(0)">✊</button>
+        <button onclick="battle(1)">🤚</button>
+        <button onclick="battle(2)">✌</button>
+    </div>
+
+    <div id="computer">
+
+    </div>
+
+    <div id="scoreboard">
+        <p id="wins">Wins: 0</p>
+        <p id="losses">Losses: 0</p>
+        <p id="ties">Ties: 0</p>
+    </div>
+</body>
